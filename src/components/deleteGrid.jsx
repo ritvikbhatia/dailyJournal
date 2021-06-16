@@ -26,7 +26,7 @@ rightButton:{
   const classes = useStyles();
 
   const deleteBlog = (id)=>{
-    Axios.post("http://localhost:3001/deleteBlog",{
+    Axios.post("https://dailyjournalnodejs.herokuapp.com/deleteBlog",{
       id:id
     }).then((response)=>{
         if(response.data ==="ok"){

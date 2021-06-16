@@ -10,7 +10,7 @@ function Home(){
     const [blogs, setBlogs] = React.useState([]);
 
     function getBlogs(){
-         Axios.get("http://localhost:3001/getBlog")
+         Axios.get("https://dailyjournalnodejs.herokuapp.com/getBlog")
          .then((response)=>{
                response.data.map((e)=>{
                    return setBlogs((prevValue)=>{
