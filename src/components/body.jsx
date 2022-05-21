@@ -12,8 +12,9 @@ function display(){
     {       if(props.Content.length< 1){
         return  <Grids title={"No posts Found!!"} content={"please create a new Post!"}  />; 
     }else{
-        return props.Content.map((b)=>{
-            return  <Grids title={b.title} key={b.id} content={b.content} date={b.date} />;
+        return props.Content.map((element)=>{
+            return  <Grids title={element.title} key={element._id} 
+            content={element.content} date={element.createdAt} pictures={element.pictures} user={element.user}/>;
         })
     }
        

@@ -40,13 +40,15 @@ background-image: url("https://www.transparenttextures.com/patterns/cartographer
     padding-left: 1rem;
     padding-top: 1rem;
   font-weight: bold;
-  font-family: 'IM Fell English', serif;
+  font-family: 'Times New Roman', serif;
 }
 .grid-content{
     padding-left: 1rem;
     padding-top: 1rem;
-
    
+}
+.posted-by{
+    text-align: right;
 }
 .app-bar-text-left{
     text-shadow: 2px 2px 6px white;

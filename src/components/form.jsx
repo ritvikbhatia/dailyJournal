@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     setOpen(false);
   };
   function submitPost(){
-Axios.post("https://dailyjournalnodejs.herokuapp.com/postBlog",{
+Axios.post("localhost:3001/postBlog",{
   title:title,
   content:content
   })

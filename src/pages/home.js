@@ -7,28 +7,30 @@ import Axios from 'axios';
 
 
 function Home(){
-    const [blogs, setBlogs] = React.useState([]);
+    const [posts, setPosts] = React.useState([]);
 
-    function getBlogs(){
-         Axios.get("https://dailyjournalnodejs.herokuapp.com/getBlog")
+    function getPosts(){
+         Axios.get("http://localhost:3001/getAllPosts")
          .then((response)=>{
-               response.data.map((e)=>{
-                   return setBlogs((prevValue)=>{
+                console.log({response})
+               response.data.allPosts.map((e)=>{
+                    console.log({response})
+                   return setPosts((prevValue)=>{
                     return [...prevValue,e];
                });
                });
           
 
          });
-    }
 
+    }
     React.useEffect(()=>{
-           return getBlogs();
+           return getPosts();
     },[]);
    
     return <>
      <Header />
-    <Body heading="All Posted Blogs " Content={blogs} pageType="home" />
+    <Body heading="All Posted Blogs " Content={posts} pageType="home" />
      <Footer/>
     </>
 }

@@ -8,7 +8,7 @@ function DeletePost(){
     const [blogs, setBlogs] = React.useState([]);
 
     function getBlogs(){
-         Axios.get("https://dailyjournalnodejs.herokuapp.com/getBlog")
+         Axios.get("http://localhost:3001/getBlog")
          .then((response)=>{
                response.data.map((e)=>{
                    return setBlogs((prevValue)=>{

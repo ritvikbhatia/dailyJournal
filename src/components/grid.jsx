@@ -26,9 +26,16 @@ const useStyles = makeStyles((theme) => ({
       <Grid container >
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h9">{props.date}</Typography>
-          
-              <Typography variant='h4' color="primary" gutterBottom>
+            <Typography variant="h9">{new Date(props.date).toLocaleString()}</Typography>
+            <Divider/>
+            <Typography variant="h8"> 
+            <div>
+            <p>
+            {`Posted by @`+ props?.user?.username}
+               </p> 
+               </div> 
+               </Typography> 
+              <Typography variant='h5' color="primary" gutterBottom>
            <p style={{color:'black'}} className="grid-heading">
          {props.title}
                </p> 

@@ -117,10 +117,10 @@ const [passwordLogin, setPassword] =React.useState("");
   const theme = useTheme();
 
 //CHECK COOKIE FUNCTION
- const [admin, setAdmin] = React.useState(false);
+ const [loggedIn, setloggedIn] = React.useState(false);
 
 function cookieCheck(){
- setAdmin(Cookies.get('admin'));
+  setloggedIn(Cookies.get('loggedIn'));
  
 }
 
@@ -131,21 +131,22 @@ React.useEffect(()=>{
 // LOGIN FUNCTION
   function login(event){
 
-    Axios.post("https://dailyjournalnodejs.herokuapp.com/login",{
-      username: usernameLogin,
+    Axios.post("http://localhost:3001/login",{
+      usernameOrEmail: usernameLogin,
       password:passwordLogin
     }).then((response)=>{
-      if(response.data === "aman"){
-        Cookies.set('admin',true);
-        setAdmin(true);
+      console.log({response})
+      if(response.data.success){
+        Cookies.set('loggedIn',true);
+        setloggedIn(true);
       }
     });
   
   }
 
   function logout(){
-    Cookies.remove('admin');
-    setAdmin("false");
+    Cookies.remove('loggedIn');
+    setloggedIn("false");
   }
 
   return (
@@ -174,14 +175,14 @@ React.useEffect(()=>{
 
           {/* if statement start here */}
         {
-          admin? 
+          loggedIn? 
           <List className={classes.root}>
             <Link to="/post">
             <Button className={classes.root}>
             <ListItem className={classes.listItemAfterLogin} >
-            <Avatar>P</Avatar> 
+            <Avatar>C</Avatar> 
           <Typography variant="h6" color="secondary">
-            <p className={classes.marginLeftCss}>Post Blogs</p>
+            <p className={classes.marginLeftCss}>create New post</p>
           </Typography>
             </ListItem>
             </Button>
@@ -190,9 +191,9 @@ React.useEffect(()=>{
             <Link to="/deletePost">
             <Button className={classes.root}>
             <ListItem className={classes.listItemAfterLogin} >
-            <Avatar>D</Avatar> 
+            <Avatar>M</Avatar> 
           <Typography variant="h6" color="secondary" >
-            <p className={classes.marginLeftCss}>Delete Blogs</p>
+            <p className={classes.marginLeftCss}>My posts</p>
           </Typography>
             </ListItem>
             </Button>
@@ -223,12 +224,12 @@ React.useEffect(()=>{
         </ListItemAvatar>
         <TextField
           id="username"
-          label="UserName"
+          label="UserName or Email"
           type="text"
           autoComplete="false"
           onChange={(e)=>{setusername(e.target.value);
           }}
-          helperText="Enter UserName"
+          helperText="Enter UserName or Email"
           value={usernameLogin}
         />
       </ListItem>
