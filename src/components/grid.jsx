@@ -21,19 +21,13 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
-var comments = [
-  {
-    id: 1,
-    name: "honey",
-    comment: "very cool",
-  },
-  { id: 2, name: "aman", comment: "not that cool" },
-  { id: 2, name: "kaale", comment: "not :" },
-];
 
 function Grids(props) {
+  let comments = false;
+  if(props?.comments?.length > 0){
+    comments = true;
+  } 
   const classes = useStyles();
-
   return (
     <>
       <div className="bodyGrid">
@@ -57,8 +51,6 @@ function Grids(props) {
                   </Grid>
                 </Grid>
 
-                <Divider />
-
                 <Typography variant="h4" color="primary" gutterBottom>
                   <p style={{ color: "black" }} className="grid-heading">
                     {props.title}
@@ -68,7 +60,10 @@ function Grids(props) {
                 <Typography variant="h7">
                   <p style={{ padding: 16 }}>{props.content}</p>
                 </Typography>
-
+                
+                {
+                comments?
+                  <>
                 <Accordion>
                   <AccordionSummary
                     expandIcon={"v"}
@@ -79,7 +74,7 @@ function Grids(props) {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Grid xs={12}>
-                      {comments.map((i) => {
+                      {props?.comments?.map((i) => {
                         return (
                           <>
                             <Grid
@@ -102,7 +97,7 @@ function Grids(props) {
                                 </Avatar>
                               </Grid>
                               <Grid p={2} item>
-                                <Typography variant="h6">{i?.name}</Typography>
+                                <Typography variant="h6">{i?.commentorUsername}</Typography>
                               </Grid>
                             </Grid>
                             <Grid item style={{ padding: 4, marginLeft: 50 }}>
@@ -114,7 +109,8 @@ function Grids(props) {
                     </Grid>
                   </AccordionDetails>
                 </Accordion>
-
+                </>
+: <></> }
                 <Divider />
               </Paper>
             </Grid>

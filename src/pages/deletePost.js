@@ -5,18 +5,18 @@ import Footer from '../components/footer';
 import Axios  from 'axios';
 
 function DeletePost(){
-    const [blogs, setBlogs] = React.useState([]);
-
+    const [posts, setPosts] = React.useState([]);
+    const token = localStorage.getItem('token');
     function getBlogs(){
-         Axios.get("http://localhost:3001/getBlog")
+         Axios.get("http://localhost:3001/getUserPosts",{headers:{'Authorization':`Bearer ${token}`}})
          .then((response)=>{
-               response.data.map((e)=>{
-                   return setBlogs((prevValue)=>{
+               response?.data?.posts?.map((e)=>{
+                   return setPosts((prevValue)=>{
                     return [...prevValue,e];
                });
                });
           
-
+            console.log({posts, token})
          });
     }
 
@@ -26,7 +26,7 @@ function DeletePost(){
    
     return <>
      <Header />
-    <Body heading="Delete Posts " Content={blogs} pageType="deletePost"/>
+    <Body heading="Your Posts " Content={posts} pageType="deletePost"/>
      <Footer/>
     </>
 }

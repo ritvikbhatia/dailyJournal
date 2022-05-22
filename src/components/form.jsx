@@ -114,7 +114,7 @@ Axios.post("localhost:3001/postBlog",{
       }} value={content}  className={classes.formContent} label="Content" multiline="true" />
      </div>
      <Divider/>
-      <Button onClick={submitPost} variant="outlined" className={classes.formButton}  >Post</Button>
+      <Button onClick={submitPost} variant="outlined" className={classes.formButton} >Post</Button>
     </form>
     
        
